@@ -11,7 +11,7 @@ public class LoginPageTest extends BaseTest {
     public void loginPageTest() {
         loginPage
                 .loginPage()
-                .openHomePage();
+                .loginAndGoToHomePage("shuma-abgm@force.com", "&YP39TJUrqxy!Mp*");
         Assert.assertEquals(driver.getCurrentUrl(), "https://onliner6.lightning.force.com/lightning/page/home");
     }
 }

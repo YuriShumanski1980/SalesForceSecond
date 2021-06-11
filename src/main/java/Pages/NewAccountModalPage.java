@@ -15,12 +15,12 @@ public class NewAccountModalPage extends BasePage {
     }
 
     private static final String URL_NEW_ACCOUNT = "https://onliner6.lightning.force.com/lightning/o/Account/new";
-    private static final By ACCOUNT_NAME = By.xpath("//*[contains(@class,'highlights slds-clearfix')]/descendant::span[text() ='TestAccount-SalesForce']");
-    private static final By ACCOUNT_PHONE = By.xpath("//*[contains(@class,'highlights slds-clearfix')]//descendant::a[text() ='+375 29 800 88 00']");
-    private static final By ACCOUNT_ADDRESS = By.xpath("//*[contains(@class,'highlights slds-clearfix')]//descendant::div[text() ='5th Avenue, New York, 36']");
-    private static final By ACCOUNT_ADDRESS2 = By.xpath("//*[contains(@class,'highlights slds-clearfix')]//descendant::div[text() ='Minsk, Belarus Хто его знает']");
-    private static final By ACCOUNT_STATE = By.xpath("//*[contains(@class,'highlights slds-clearfix')]//descendant::div[text() ='Panama']");
-    private static final By ACCOUNT_WEBSITE = By.xpath("//*[contains(@class,'highlights slds-clearfix')]//descendant::a[text() ='www.twt.by']");
+    private static final By ACCOUNT_NAME = By.xpath("//*[contains(@class,'highlights slds-clearfix')]/descendant::span[contains(@class, 'custom-truncate')]");
+    private static final By ACCOUNT_PHONE = By.xpath("//*[@id=\"brandBand_2\"]//slot/lightning-formatted-phone/a");
+    private static final By ACCOUNT_ADDRESS = By.xpath("//*[@id=\"brandBand_2\"]//slot/lightning-formatted-address/a/div[1]");
+    private static final By ACCOUNT_ADDRESS2 = By.xpath("//*[@id=\"brandBand_2\"]//slot/lightning-formatted-address/a/div[2]");
+    private static final By ACCOUNT_STATE = By.xpath("//*[@id=\"brandBand_2\"]//slot/lightning-formatted-address/a/div[3]");
+    private static final By ACCOUNT_WEBSITE = By.xpath("//*[@id=\"brandBand_2\"]//slot/lightning-formatted-url/a");
 
     @Step("Open accounts page")
     public NewAccountModalPage openNewAccountPage() {

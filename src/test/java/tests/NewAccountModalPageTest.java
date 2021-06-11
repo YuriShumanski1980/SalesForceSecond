@@ -11,7 +11,7 @@ public class NewAccountModalPageTest extends BaseTest {
     public void newAccountModalPageTest() {
         loginPage
                 .loginPage()
-                .openHomePage();
+                .loginAndGoToHomePage("shuma-abgm@force.com", "&YP39TJUrqxy!Mp*");
         newAccountModalPage
                 .openNewAccountPage()
                 .createInformationIntoAccountNewPage("TestAccount-SalesForce", "www.twt.by", "Partner",
@@ -20,10 +20,9 @@ public class NewAccountModalPageTest extends BaseTest {
                         "Hello Wold)", "Minsk", "Belarus", "London", "GB",
                         "Хто его знает", "Panama", "8899/7766", "France")
                 .clickSaveButton();
-        Assert.assertEquals(newAccountModalPage.getNewAccountName(), "TestAccount-SalesForce");
+        Assert.assertEquals(newAccountModalPage.getNewAccountName(),"TestAccount-SalesForce");
         Assert.assertEquals(newAccountModalPage.getNewAccountPhone(), "+375 29 800 88 00");
         Assert.assertEquals(newAccountModalPage.getNewAccountAddress(), "5th Avenue, New York, 36");
-        Assert.assertEquals(newAccountModalPage.getNewAccountAddress2(), "Minsk, Belarus Хто его знает");
         Assert.assertEquals(newAccountModalPage.getNewAccountAddress2(), "Minsk, Belarus Хто его знает");
         Assert.assertEquals(newAccountModalPage.getNewAccountState(), "Panama");
         Assert.assertEquals(newAccountModalPage.getNewAccountWebsite(), "www.twt.by");

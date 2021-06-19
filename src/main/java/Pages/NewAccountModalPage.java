@@ -15,12 +15,13 @@ public class NewAccountModalPage extends BasePage {
     }
 
     private static final String URL_NEW_ACCOUNT = "https://onliner6.lightning.force.com/lightning/o/Account/new";
-    private static final By ACCOUNT_NAME = By.xpath("//*[contains(@class,'highlights slds-clearfix')]/descendant::span[contains(@class, 'custom-truncate')]");
-    private static final By ACCOUNT_PHONE = By.xpath("//*[@id=\"brandBand_2\"]//slot/lightning-formatted-phone/a");
-    private static final By ACCOUNT_ADDRESS = By.xpath("//*[@id=\"brandBand_2\"]//slot/lightning-formatted-address/a/div[1]");
-    private static final By ACCOUNT_ADDRESS2 = By.xpath("//*[@id=\"brandBand_2\"]//slot/lightning-formatted-address/a/div[2]");
-    private static final By ACCOUNT_STATE = By.xpath("//*[@id=\"brandBand_2\"]//slot/lightning-formatted-address/a/div[3]");
-    private static final By ACCOUNT_WEBSITE = By.xpath("//*[@id=\"brandBand_2\"]//slot/lightning-formatted-url/a");
+    private static final String COMMON_ELEMENT = "//*[@id='brandBand_2']";
+    private static final String ACCOUNT_NAME = COMMON_ELEMENT + "//descendant::span[contains(.,'%s')]";
+    private static final String ACCOUNT_PHONE = COMMON_ELEMENT + "//descendant::a[contains(.,'%s')]";
+    private static final String ACCOUNT_ADDRESS = COMMON_ELEMENT + "//slot/lightning-formatted-address/a/div[contains(.,'%s')]";
+    private static final String ACCOUNT_ADDRESS2 = COMMON_ELEMENT + "//slot/lightning-formatted-address/a/div[contains(.,'%s')]";
+    private static final String ACCOUNT_STATE = COMMON_ELEMENT + "//slot/lightning-formatted-address/a/div[contains(.,'%s')]";
+    private static final String ACCOUNT_WEBSITE = COMMON_ELEMENT + "//descendant::a[contains(.,'%s')]";
 
     @Step("Open accounts page")
     public NewAccountModalPage openNewAccountPage() {
@@ -60,27 +61,27 @@ public class NewAccountModalPage extends BasePage {
         return this;
     }
 
-    public String getNewAccountName() {
-        return driver.findElement(ACCOUNT_NAME).getText();
+    public String getNewAccountName(String accountName) {
+        return driver.findElement(By.xpath(String.format(ACCOUNT_NAME, accountName))).getText();
     }
 
-    public String getNewAccountPhone() {
-        return driver.findElement(ACCOUNT_PHONE).getText();
+    public String getNewAccountPhone(String phone) {
+        return driver.findElement(By.xpath(String.format(ACCOUNT_PHONE, phone))).getText();
     }
 
-    public String getNewAccountAddress() {
-        return driver.findElement(ACCOUNT_ADDRESS).getText();
+    public String getNewAccountAddress(String address) {
+        return driver.findElement(By.xpath(String.format(ACCOUNT_ADDRESS, address))).getText();
     }
 
-    public String getNewAccountAddress2() {
-        return driver.findElement(ACCOUNT_ADDRESS2).getText();
+    public String getNewAccountAddress2(String address2) {
+        return driver.findElement(By.xpath(String.format(ACCOUNT_ADDRESS2, address2))).getText();
     }
 
-    public String getNewAccountState() {
-        return driver.findElement(ACCOUNT_STATE).getText();
+    public String getNewAccountState(String state) {
+        return driver.findElement(By.xpath(String.format(ACCOUNT_STATE, state))).getText();
     }
 
-    public String getNewAccountWebsite() {
-        return driver.findElement(ACCOUNT_WEBSITE).getText();
+    public String getNewAccountWebsite(String website) {
+        return driver.findElement(By.xpath(String.format(ACCOUNT_WEBSITE, website))).getText();
     }
 }

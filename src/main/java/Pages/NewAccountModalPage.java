@@ -8,6 +8,10 @@ import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 @Log4j2
 public class NewAccountModalPage extends BasePage {
@@ -16,14 +20,18 @@ public class NewAccountModalPage extends BasePage {
         super(driver);
     }
 
-    private static final String URL_NEW_ACCOUNT = "https://onliner6.lightning.force.com/lightning/o/Account/new";
+    private static final String URL_NEW_ACCOUNT = "https://filial-z.lightning.force.com/lightning/o/Account/new";
     private static final String COMMON_ELEMENT = "//*[@id='brandBand_2']";
-    private static final String ACCOUNT_NAME = COMMON_ELEMENT + "//descendant::span[contains(.,'%s')]";
+    private static final String ACCOUNT_NAME = COMMON_ELEMENT + "//descendant::div[contains(@class, 'sfaOutputNameWithHierarchyIcon')]//descendant::span[contains(.,'%s')]";
     private static final String ACCOUNT_PHONE = COMMON_ELEMENT + "//descendant::a[contains(.,'%s')]";
     private static final String ACCOUNT_ADDRESS = COMMON_ELEMENT + "//slot/lightning-formatted-address/a/div[contains(.,'%s')]";
     private static final String ACCOUNT_ADDRESS2 = COMMON_ELEMENT + "//slot/lightning-formatted-address/a/div[contains(.,'%s')]";
     private static final String ACCOUNT_STATE = COMMON_ELEMENT + "//slot/lightning-formatted-address/a/div[contains(.,'%s')]";
     private static final String ACCOUNT_WEBSITE = COMMON_ELEMENT + "//descendant::a[contains(.,'%s')]";
+
+    @FindBy(xpath = "//*[contains(text(),'Additional Information')]")
+    WebElement additionalInformation;
+
 
     @Step("Open accounts page")
     public NewAccountModalPage openNewAccountPage() {
@@ -79,6 +87,16 @@ public class NewAccountModalPage extends BasePage {
     public NewAccountModalPage clickSaveButton() {
         log.info("Жмякнули кнопку сохранить аккаунт");
         new SaveButton(driver).clickSaveButton();
+        return this;
+    }
+
+    public void waitForElementOnNewModalPage(WebElement element, int timeout) {
+        WebDriverWait wait = new WebDriverWait(driver, timeout);
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public NewAccountModalPage waitForPageLoaded() {
+        waitForElementOnNewModalPage(additionalInformation, 20);
         return this;
     }
 

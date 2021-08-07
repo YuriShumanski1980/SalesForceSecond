@@ -11,9 +11,10 @@ public class NewAccountModalPageTest extends BaseTest {
     public void newAccountModalPageTest() {
         loginPage
                 .loginPage()
-                .loginAndGoToHomePage("shuma-abgm@force.com", "&YP39TJUrqxy!Mp*");
+                .loginAndGoToHomePage("shumans-lqjm@force.com", "LJ77M9JKnszpzP@T");
         newAccountModalPage
                 .openNewAccountPage()
+                .waitForPageLoaded()
                 .createInformationIntoAccountNewPage("TestAccount-SalesForce", "www.twt.by", "Partner",
                         "Website for buying / selling cars", "+375 29 800 88 00",
                         "Chemicals", "26", "5th Avenue, New York, 36",
